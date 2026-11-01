@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: goalloop
+      POSTGRES_PASSWORD: goalloop-local
+      POSTGRES_DB: goalloop
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U goalloop]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  goalloop:
+    build: .
+    ports:
+      - 127.0.0.1:12400:12400
+    environment:
+      DATABASE_URL: postgresql://goalloop:goalloop-local@postgres:5432/goalloop
+      GOALLOOP_BASE_URL: http://127.0.0.1:12400
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - artifacts:/data
+    restart: unless-stopped
+volumes:
+  database:
+  artifacts:

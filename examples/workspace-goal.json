@@ -1,0 +1,12 @@
+{
+  "title": "修复加法函数并提供验收证据",
+  "objective": "读取 calculator.js，修复 add(a,b)，使正数、负数、零和小数输入通过独立检查。只能操作明确授权的工作区文件。",
+  "pack": "workspace",
+  "runtime": "codex",
+  "mode": "achieve",
+  "stableMs": 0,
+  "sampleMs": 1000,
+  "freshMs": 5000,
+  "maxTurns": 10,
+  "turnTimeoutMs": 120000
+}

@@ -1,0 +1,9 @@
+- capability: cluster.observe
+  effect: allow
+  resources: ['*']
+- capability: cluster.clean_cache
+  effect: allow
+  resources: ['node-01', 'node-02', 'node-03']
+- capability: cluster.restart
+  effect: approval_required
+  resources: ['*']
